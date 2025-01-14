@@ -10,62 +10,60 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            background: #333;
             display: flex;
             justify-content: center;
             align-items: center;
             color: #fff;
             direction: rtl;
+            overflow: hidden;
         }
 
         .container {
             text-align: center;
             background: rgba(0, 0, 0, 0.85);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
-            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+            width: 90%;
             max-width: 350px;
             transition: transform 0.3s ease-in-out;
         }
 
-        .container:hover {
-            transform: scale(1.05);
-        }
-
         h1 {
-            font-size: 24px;
+            font-size: 20px;
             color: #FFD700;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             letter-spacing: 1px;
             font-weight: bold;
         }
 
         p, ul {
-            font-size: 14px;
+            font-size: 13px;
             margin: 8px 0;
+            text-align: right;
         }
 
         .wallet-address {
-            font-size: 14px;
+            font-size: 12px;
             color: #FFD700;
-            margin: 15px 0;
+            margin: 12px 0;
             word-break: break-all;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .wallet-address:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         button {
-            font-size: 14px;
-            padding: 10px;
-            margin-top: 15px;
+            font-size: 12px;
+            padding: 8px;
+            margin-top: 12px;
             width: 80%;
-            max-width: 300px;
-            border-radius: 10px;
+            max-width: 250px;
+            border-radius: 8px;
             border: none;
             background: linear-gradient(145deg, #ff6347, #e74c3c);
             color: #fff;
@@ -80,21 +78,17 @@
 
         .note {
             font-size: 12px;
-            margin-top: 8px;
+            margin-top: 5px;
             color: #f0f0f0;
-        }
-
-        .next-button-container {
-            margin-top: 20px;
         }
 
         input[type="email"], input[type="file"] {
             font-size: 12px;
             padding: 10px;
             width: 80%;
-            max-width: 300px;
-            margin: 10px auto;
-            border-radius: 10px;
+            max-width: 250px;
+            margin: 8px auto;
+            border-radius: 8px;
             border: 2px solid #ff6347;
             background: rgba(0, 0, 0, 0.6);
             color: #fff;
@@ -107,102 +101,6 @@
             outline: none;
         }
 
-        #loginPage {
-            z-index: 10;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
-            max-width: 400px;
-            width: 100%;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        h1 {
-            font-size: 32px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 40px;
-            color: #ff6347;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes glowText {
-            0% {
-                color: #ff6347;
-                text-shadow: 0 0 20px #ff6347, 0 0 30px #ff6347;
-            }
-            100% {
-                color: #FFD700;
-                text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700;
-            }
-        }
-
-        h1 {
-            animation: glowText 1.5s infinite alternate;
-        }
-
-        input[type="text"], input[type="password"] {
-            padding: 14px;
-            font-size: 16px;
-            margin-top: 20px;
-            width: 80%;
-            max-width: 350px;
-            border-radius: 10px;
-            border: 2px solid #ff6347;
-            background: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            transition: all 0.3s ease;
-        }
-
-        input[type="text"]:focus, input[type="password"]:focus {
-            border-color: #FFD700;
-            box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
-            outline: none;
-        }
-
-        .login-btn {
-            background-color: #4CAF50;
-            font-size: 18px;
-            padding: 14px 30px;
-            border-radius: 30px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .login-btn:hover {
-            background-color: #45a049;
-            transform: scale(1.1);
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .button-container button {
-            font-size: 16px;
-            padding: 12px 30px;
-            background: linear-gradient(145deg, #ff6347, #e74c3c);
-            border-radius: 30px;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .button-container button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(255, 99, 71, 0.5);
-        }
-
         .message {
             position: fixed;
             top: 50%;
@@ -211,8 +109,8 @@
             background-color: rgba(0, 0, 0, 0.8);
             color: #FFD700;
             padding: 10px;
-            border-radius: 15px;
-            font-size: 14px;
+            border-radius: 10px;
+            font-size: 12px;
             z-index: 9999;
             display: none;
         }
