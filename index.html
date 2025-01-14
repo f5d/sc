@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V7Crash</title>
+    <title>V7Crash - تفعيل الحساب</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             height: 100vh;
-            background: #333;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,48 +22,44 @@
         .container {
             text-align: center;
             background: rgba(0, 0, 0, 0.85);
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-            width: 90%;
-            max-width: 350px;
-            transition: transform 0.3s ease-in-out;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+            width: 100%;
+            max-width: 320px;
         }
 
         h1 {
             font-size: 20px;
             color: #FFD700;
             margin-bottom: 15px;
-            letter-spacing: 1px;
             font-weight: bold;
         }
 
         p, ul {
-            font-size: 13px;
-            margin: 8px 0;
-            text-align: right;
+            font-size: 14px;
+            margin: 5px 0;
         }
 
         .wallet-address {
-            font-size: 12px;
+            font-size: 14px;
             color: #FFD700;
-            margin: 12px 0;
+            margin: 15px 0;
             word-break: break-all;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
 
         .wallet-address:hover {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         button {
-            font-size: 12px;
-            padding: 8px;
-            margin-top: 12px;
-            width: 80%;
-            max-width: 250px;
-            border-radius: 8px;
+            font-size: 14px;
+            padding: 10px;
+            margin-top: 10px;
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
             border: none;
             background: linear-gradient(145deg, #ff6347, #e74c3c);
             color: #fff;
@@ -78,21 +74,20 @@
 
         .note {
             font-size: 12px;
-            margin-top: 5px;
+            margin-top: 8px;
             color: #f0f0f0;
         }
 
         input[type="email"], input[type="file"] {
             font-size: 12px;
             padding: 10px;
-            width: 80%;
-            max-width: 250px;
-            margin: 8px auto;
-            border-radius: 8px;
+            width: 100%;
+            max-width: 300px;
+            margin: 10px auto;
+            border-radius: 10px;
             border: 2px solid #ff6347;
             background: rgba(0, 0, 0, 0.6);
             color: #fff;
-            transition: all 0.3s ease;
         }
 
         input[type="email"]:focus, input[type="file"]:focus {
@@ -109,8 +104,8 @@
             background-color: rgba(0, 0, 0, 0.8);
             color: #FFD700;
             padding: 10px;
-            border-radius: 10px;
-            font-size: 12px;
+            border-radius: 15px;
+            font-size: 14px;
             z-index: 9999;
             display: none;
         }
@@ -121,48 +116,36 @@
     <!-- الرسائل -->
     <div class="message" id="message"></div>
 
-    <!-- صفحة تسجيل الدخول -->
-    <div id="loginPage">
-        <h1>تسجيل الدخول</h1>
-        <input type="text" id="username" placeholder="اسم المستخدم" />
-        <input type="password" id="password" placeholder="كلمة المرور" />
-        <button class="login-btn" onclick="login()">دخول</button>
-
-        <!-- زر الانتقال إلى صفحة "تفعيل" -->
-        <button onclick="goToPaymentPage()">تفعيل</button>
-    </div>
-
     <!-- صفحة تفعيل -->
-    <div class="container" id="paymentPage" style="display: none;">
-        <h1>تفعيل</h1>
+    <div class="container" id="paymentPage">
+        <h1>تفعيل الحساب</h1>
 
         <p><strong>محفظة USDT TRC20:</strong></p>
         <p class="wallet-address" onclick="copyWallet()">TL344teHLukh2FwoGbU2bFnoELPDZQr8Rw</p>
-        <p>لإتمام الدفع، قم بتحويل المبلغ المطلوب إلى المحفظة المذكورة التحويل عبر USDT TRC20</p>
+        <p>لإتمام الدفع، قم بتحويل المبلغ المطلوب إلى المحفظة عبر USDT TRC20</p>
 
-        <p><strong>الأسعار التفعيل: </strong></p>
+        <p><strong>أسعار التفعيل:</strong></p>
         <ul>
             <li>تفعيل ساعة: 100 دولار</li>
             <li>تفعيل أربع ساعات: 390 دولار</li>
-            <li>تفعيل اسبوع: 1000 دولار (عرض)</li>
-            <li>في أول اشتراك معنا سوف تاخذ ضعف وقتك X3</li>
+            <li>تفعيل أسبوع: 1000 دولار (عرض خاص)</li>
         </ul>
 
-        <div>
-            <p class="note">يرجى إدخال بريدك الإلكتروني ليتم إرسال اسم المستخدم وكلمة المرور الخاصة بالسكريبت لتفعيلة.</p>
-            <input type="email" id="email" placeholder="أدخل إيميلك" />
+        <p class="note">يرجى إدخال بريدك الإلكتروني ليتم إرسال اسم المستخدم وكلمة المرور الخاصة بك لتفعيل الحساب.</p>
+        <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني" />
 
-            <p class="note">بعد التحويل، يرجى رفع صورة من التحويل الناجح (سكرين شوت أو صورة من الإيصال) لتأكيد الدفع.</p>
-            <input type="file" id="screenshot" accept=".jpg, .jpeg, .png" />
-        </div>
+        <p class="note">بعد التحويل، قم برفع صورة من التحويل (سكرين شوت أو صورة من الإيصال) لتأكيد الدفع.</p>
+        <input type="file" id="screenshot" accept=".jpg, .jpeg, .png" />
 
-        <p class="note">بعد تاكيد المعلومات اضغط علي "إرسال تفاصيل الدفع" وسيتم المعالجة وارسال تفاصيل الاشتراك على بريدك الإلكتروني.</p>
+        <!-- زر إرسال التفاصيل -->
         <button onclick="submitPayment()">إرسال تفاصيل الدفع</button>
 
-        <div class="next-button-container">
-            <p class="note">اضغط علي "تسجيل الدخول" وأدخل اسم المستخدم وكلمة المرور لبدء التشغيل.</p>
-            <button onclick="goToLoginPage()">تسجيل الدخول</button>
-        </div>
+        <p class="note">يرجى الانتظار حتى يتم معالجة الدفع.</p>
+
+        <!-- زر دفع مباشر لمحفظة تيليجرام -->
+        <a href="https://t.me/D_E_V_3?start=payment" target="_blank">
+            <button>دفع الآن عبر محفظة تيليجرام</button>
+        </a>
     </div>
 
     <script>
@@ -173,14 +156,14 @@
 
             setTimeout(() => {
                 messageBox.style.display = 'none';
-            }, 3000); // تختفي بعد 3 ثواني
+            }, 3000);
         }
 
         function copyWallet() {
             const walletAddress = document.querySelector('.wallet-address').textContent;
             navigator.clipboard.writeText(walletAddress)
-                .then(() => showMessage('تم نسخ المحفظة إلى الحافظة'))
-                .catch(() => showMessage('حدث خطأ أثناء نسخ المحفظة'));
+                .then(() => showMessage('تم نسخ عنوان المحفظة إلى الحافظة'))
+                .catch(() => showMessage('حدث خطأ أثناء نسخ عنوان المحفظة'));
         }
 
         function submitPayment() {
@@ -189,12 +172,12 @@
             const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
             if (!emailPattern.test(email)) {
-                showMessage("من فضلك أدخل بريد إلكتروني صحيح.");
+                showMessage("من فضلك أدخل بريدًا إلكترونيًا صحيحًا.");
                 return;
             }
 
             if (!screenshot) {
-                showMessage("من فضلك قم برفع صورة التحويل.");
+                showMessage("من فضلك قم برفع صورة من التحويل.");
                 return;
             }
 
@@ -220,31 +203,14 @@
             })
             .then(response => {
                 if (response.ok) {
-                    showMessage(`فحال كانت معلومات الدفع صحيحة سيتم إرسال تفاصيل الاشتراك إلى بريدك الإلكتروني (${email}) بنجاح!`);
+                    showMessage(`تم إرسال تفاصيل الاشتراك إلى بريدك الإلكتروني (${email}) بنجاح!`);
                 } else {
-                    showMessage('حدث خطاَ أثناء إرسال البيانات الينا يرجي المحاولة مره اخري.');
+                    showMessage('حدث خطأ أثناء إرسال البيانات. يرجى المحاولة مرة أخرى.');
                 }
             })
             .catch(() => {
-                showMessage('حدث خطاَ أثناء إرسال البيانات الينا يرجي المحاولة مره اخري.');
+                showMessage('حدث خطأ أثناء إرسال البيانات. يرجى المحاولة مرة أخرى.');
             });
-        }
-
-        function goToPaymentPage() {
-            document.getElementById('loginPage').style.display = 'none';
-            document.getElementById('paymentPage').style.display = 'block';
-        }
-
-        function goToLoginPage() {
-            document.getElementById('paymentPage').style.display = 'none';
-            document.getElementById('loginPage').style.display = 'block';
-        }
-
-        function login() {
-            showMessage('خطا في تسجيل الدخول فحال ليس لديك تفعيل يرجي تفعيل حسابك اولا');
-            setTimeout(() => {
-                goToPaymentPage();
-            }, 3000); // الانتقال بعد 3 ثواني
         }
     </script>
 
