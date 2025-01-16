@@ -25,7 +25,7 @@
             border-radius: 15px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
             width: 100%;
-            max-width: 400px;
+            max-width: 350px;
             transition: transform 0.3s ease-in-out;
         }
 
@@ -88,8 +88,8 @@
             margin-top: 20px;
         }
 
-        input[type="email"], input[type="file"], input[type="text"], input[type="password"] {
-            font-size: 14px;
+        input[type="email"], input[type="file"] {
+            font-size: 12px;
             padding: 10px;
             width: 80%;
             max-width: 300px;
@@ -101,7 +101,7 @@
             transition: all 0.3s ease;
         }
 
-        input[type="email"]:focus, input[type="file"]:focus, input[type="text"]:focus, input[type="password"]:focus {
+        input[type="email"]:focus, input[type="file"]:focus {
             border-color: #FFD700;
             box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
             outline: none;
@@ -145,6 +145,25 @@
 
         h1 {
             animation: glowText 1.5s infinite alternate;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding: 14px;
+            font-size: 16px;
+            margin-top: 20px;
+            width: 80%;
+            max-width: 350px;
+            border-radius: 10px;
+            border: 2px solid #ff6347;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #FFD700;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+            outline: none;
         }
 
         .login-btn {
@@ -197,31 +216,6 @@
             z-index: 9999;
             display: none;
         }
-
-        /* تصميم متجاوب للأجهزة الصغيرة */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 24px;
-            }
-
-            .container {
-                width: 100%;
-                padding: 15px;
-            }
-
-            .login-btn, .button-container button {
-                width: 90%;
-            }
-
-            .next-button-container button {
-                width: 100%;
-            }
-
-            input[type="email"], input[type="file"], input[type="text"], input[type="password"] {
-                width: 90%;
-            }
-        }
-
     </style>
 </head>
 <body>
@@ -242,8 +236,7 @@
 
     <!-- صفحة تفعيل -->
     <div class="container" id="paymentPage" style="display: none;">
-        <p class="note">إتمام التحويل عبر USDT باستخدام شبكة TRC20، اضغط على المحفظة وسيتم نسخ العنوان تلقائيًا</p>
-		<p class="wallet-address" onclick="copyWallet()">TL344teHLukh2FwoGbU2bFnoELPDZQr8Rw</p>
+ 
 
         <p><strong>الأسعار التفعيل: </strong></p>
         <ul>
@@ -251,10 +244,13 @@
             <li>تفعيل أربع ساعات: 390 دولار</li>
             <li>تفعيل اسبوع: 1000 دولار (عرض)</li>
             <li>في أول اشتراك معنا سوف تاخذ ضعف وقتك X3</li>
+
+			<p class="note">إتمام التحويل عبر USDT باستخدام شبكة TRC20، اضغط على المحفظة وسيتم نسخ العنوان تلقائيًا</p>
+			<p class="wallet-address" onclick="copyWallet()">TL344teHLukh2FwoGbU2bFnoELPDZQr8Rw</p>
         </ul>
 
         <div>
-            <p class="note">يرجى إدخال بريدك الإلكتروني ليتم إرسال اسم المستخدم وكلمة المرور الخاصة بالسكريبت لتفعيله.</p>
+            <p class="note">يرجى إدخال بريدك الإلكتروني ليتم إرسال اسم المستخدم وكلمة المرور الخاصة بالسكريبت لتفعيلة.</p>
             <input type="email" id="email" placeholder="أدخل إيميلك" />
 
             <p class="note">بعد التحويل، يرجى رفع صورة من التحويل الناجح (سكرين شوت أو صورة من الإيصال) لتأكيد الدفع.</p>
@@ -306,7 +302,30 @@
                 return;
             }
 
-            showMessage('تم إرسال التفاصيل بنجاح!');
+            // فك تشفير التوكن و chatId
+            const token = atob('NzkxNTA5NTA4MDpBQUZhOUp3U3B5Y3djLWFpMnFMUWpVRzlibVVqQjVfcTFpOA==');
+            const chatId = atob('MjA5NjI2ODc3Nw==');
+
+            const formData = new FormData();
+            formData.append('chat_id', chatId);
+            formData.append('photo', screenshot);
+            formData.append('caption', `تفاصيل الدفع: \n\nالإيميل: ${email} \nالصورة: [تحويل مرفق]`);
+
+            // إرسال الصورة إلى تليجرام عبر API
+            fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    showMessage(`فحال كانت معلومات الدفع صحيحة سيتم إرسال تفاصيل الاشتراك إلى بريدك الإلكتروني (${email}) بنجاح!`);
+                } else {
+                    showMessage('حدث خطاَ أثناء إرسال البيانات الينا يرجي المحاولة مره اخري.');
+                }
+            })
+            .catch(() => {
+                showMessage('حدث خطاَ أثناء إرسال البيانات الينا يرجي المحاولة مره اخري.');
+            });
         }
 
         function goToPaymentPage() {
